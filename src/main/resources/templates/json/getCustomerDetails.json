@@ -1,0 +1,3 @@
+{
+  "responseCode" : [(${response.get('GetCustomerDetailsResponseMessage').get('responseCode')})]
+}

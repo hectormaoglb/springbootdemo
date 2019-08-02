@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  port: 8090
+
+---
+spring:
+  profiles: dev
+service:
+  rest:
+    endpoints:
+      getCustomerDetails:
+        path: /getCustomerDetails
+        method: GET
+  proxy:
+    operations:
+      getCustomerDetails:
+        url: "https://rest-stage-va.evergent.com/ev/getCustomerDetails"
+        payload: "{\"GetCustomerDetailsRequestMessage\":{\"channelPartnerID\":\"FOX\",\"userToken\":\"${userToken}\",\"locale\":\"\"}}"
+        headers:
+          X-API-KEY: m93ARKuDQ5rzJjax
+          X-APP-ID: 68bPYBqMqwKLPgEX
+        method: POST
+        applyTemplate: true
+        validStatusCodes:
+          - 200
+          - 498
